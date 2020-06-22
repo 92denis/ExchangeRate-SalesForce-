@@ -1,0 +1,38 @@
+<aura:component controller="ExchangeRateController" implements="flexipage:availableForAllPageTypes">
+    <aura:attribute name="currencyInfo" type="Object"/>
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }"/>
+
+    <lightning:card title="Currency Pair">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+            <thead>
+            <tr class="slds-line-height_reset">
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Base Currency">Base Currency</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Needed Currency">Needed Currency</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Rate">Rate</div>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <aura:iteration items="{!v.currencyInfo.rates}" var="item" indexVar="key">
+
+                <tr class="slds-hint-parent">
+                    <td data-label="Base Currency" scope="row">
+                        <div class="slds-truncate" title="{!v.currencyInfo.base + key}"> {!v.currencyInfo.base}</div>
+                    </td>
+                    <td data-label="Needed Currency">
+                        <div class="slds-truncate" title="{!item.name}">{!item.name}</div>
+                    </td>
+                    <td data-label="Rate">
+                        <div class="slds-truncate" title="{!item.value}">{!item.value}</div>
+                    </td>
+                </tr>
+            </aura:iteration>
+            </tbody>
+        </table>
+    </lightning:card>
+</aura:component>
